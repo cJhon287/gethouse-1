@@ -1,0 +1,196 @@
+{
+  "Result": [{
+      "project": "THOMSON RISE ESTATE",
+      "street": "JALAN BERJAYA",
+      "rental": [{
+        "leaseDate": "0314",
+        "propertyType": "Detached House",
+        "areaSqm": "150-200",
+        "areaSqft": "1500-2000",
+        "rent": 4300,
+        "district": "20"
+      }],
+      "y": "37250.512899840002",
+      "x": "29360.426817729999"
+    },
+    {
+      "project": "THE ESPIRA",
+      "street": "LORONG L TELOK KURAU",
+      "rental": [{
+          "leaseDate": "0314",
+          "propertyType": "Non-landed Properties",
+          "areaSqm": "100-110",
+          "areaSqft": "1100-1200",
+          "rent": 3100,
+          "district": "15",
+          "noOfBedRoom": "3"
+        },
+        {
+          "leaseDate": "0314",
+          "propertyType": "Non-landed Properties",
+          "areaSqm": "50-60",
+          "areaSqft": "500-600",
+          "rent": 2400,
+          "district": "15",
+          "noOfBedRoom": "1"
+        }
+      ],
+      "y": "32747.030532890001",
+      "x": "37045.353209170002"
+    }
+    ,
+    {
+      "project": "THE GAY",
+      "street": "WELLINGTON CIRCLE",
+      "rental": [{
+          "leaseDate": "0314",
+          "propertyType": "Non-landed Properties",
+          "areaSqm": "100-110",
+          "areaSqft": "1100-1200",
+          "rent": 2000,
+          "district": "15",
+          "noOfBedRoom": "2"
+        },
+        {
+          "leaseDate": "0314",
+          "propertyType": "Non-landed Properties",
+          "areaSqm": "50-60",
+          "areaSqft": "500-600",
+          "rent": 2400,
+          "district": "15",
+          "noOfBedRoom": "4"
+        }
+      ],
+      "y": "48303.595",
+      "x": "26695.799"
+
+    }
+    ,
+    {
+      "project": "THE HELLO",
+      "street": "LUCKY VIEW",
+      "rental": [{
+          "leaseDate": "0314",
+          "propertyType": "Non-landed Properties",
+          "areaSqm": "100-110",
+          "areaSqft": "1100-1200",
+          "rent": 1500,
+          "district": "5",
+          "noOfBedRoom": "2"
+        }
+        
+      ],
+      "y": "33352.124",
+      "x": "39817.964"
+
+    }
+    ,
+    {
+      "project": "BRO WHAT",
+      "street": "MAYFLOWER CRESCENT",
+      "rental": [{
+          "leaseDate": "0314",
+          "propertyType": "Non-landed Properties",
+          "areaSqm": "100-110",
+          "areaSqft": "1100-1200",
+          "rent": 7500,
+          "district": "2",
+          "noOfBedRoom": "5"
+        }
+        
+      ],
+      "y": "39443.112",
+      "x": "28712.177"
+      
+    }
+    ,
+    {
+      "project": "HMMMM",
+      "street": "NEO TIOW ROAD",
+      "rental": [{
+          "leaseDate": "0314",
+          "propertyType": "Non-landed Properties",
+          "areaSqm": "100-110",
+          "areaSqft": "1100-1200",
+          "rent": 6200,
+          "district": "5",
+          "noOfBedRoom": "4"
+        },
+        {
+          "leaseDate": "0314",
+          "propertyType": "Non-landed Properties",
+          "areaSqm": "50-60",
+          "areaSqft": "500-600",
+          "rent": 5200,
+          "district": "5",
+          "noOfBedRoom": "3"
+        }
+      ],
+      "y": "45397.435",
+      "x": "15478.784"
+      
+
+    }
+    ,
+    {
+      "project": "BELYSA",
+      "street": "PASIR RIS DRIVE 1",
+      "rental": [{
+          "leaseDate": "0314",
+          "propertyType": "Non-landed Properties",
+          "areaSqm": "100-110",
+          "areaSqft": "1100-1200",
+          "rent": 5000,
+          "district": "12",
+          "noOfBedRoom": "3"
+        },
+        {
+          "leaseDate": "0314",
+          "propertyType": "Non-landed Properties",
+          "areaSqm": "50-60",
+          "areaSqft": "500-600",
+          "rent": 3700,
+          "district": "12",
+          "noOfBedRoom": "2"
+        }
+      ],
+      "y": "39235.761",
+      "x": "40854.69"
+    
+    }
+    ,
+    
+    {
+      "project": "NIGGER STREET",
+      "street": "CANBERRA ROAD",
+      "rental": [{
+          "leaseDate": "0314",
+          "propertyType": "Non-landed Properties",
+          "areaSqm": "100-110",
+          "areaSqft": "1100-1200",
+          "rent": 5000,
+          "district": "12",
+          "noOfBedRoom": "3"
+        },
+        {
+          "leaseDate": "0314",
+          "propertyType": "Non-landed Properties",
+          "areaSqm": "50-60",
+          "areaSqft": "500-600",
+          "rent": 3700,
+          "district": "12",
+          "noOfBedRoom": "2"
+        }
+      ],
+      "y": "48113.076",
+      "x": "26479.573"
+      
+    
+    }
+    
+    
+  ],
+
+  
+  "Status": "Success"
+}
