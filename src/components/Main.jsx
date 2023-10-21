@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-import Selector2 from './Selector2';
 
 const Main = () => {
     

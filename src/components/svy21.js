@@ -166,4 +166,4 @@ var SVY21 = (function(){
 
 });
 
-export default SVY21
+export default SVY21    
