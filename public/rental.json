@@ -18,7 +18,7 @@
       "street": "LORONG L TELOK KURAU",
       "rental": [{
           "leaseDate": "0314",
-          "propertyType": "Non-landed Properties",
+          "propertyType": "Executive Condominium",
           "areaSqm": "100-110",
           "areaSqft": "1100-1200",
           "rent": 3100,
@@ -27,9 +27,9 @@
         },
         {
           "leaseDate": "0314",
-          "propertyType": "Non-landed Properties",
+          "propertyType": "Executive Condominium",
           "areaSqm": "50-60",
-          "areaSqft": "500-600",
+          "areaSqft": "1100-1200",
           "rent": 2400,
           "district": "15",
           "noOfBedRoom": "1"
@@ -109,7 +109,7 @@
       "street": "NEO TIOW ROAD",
       "rental": [{
           "leaseDate": "0314",
-          "propertyType": "Non-landed Properties",
+          "propertyType": "Semi-Detached House",
           "areaSqm": "100-110",
           "areaSqft": "1100-1200",
           "rent": 6200,
@@ -118,7 +118,7 @@
         },
         {
           "leaseDate": "0314",
-          "propertyType": "Non-landed Properties",
+          "propertyType": "Semi-Detached House",
           "areaSqm": "50-60",
           "areaSqft": "500-600",
           "rent": 5200,
@@ -165,6 +165,33 @@
       "street": "CANBERRA ROAD",
       "rental": [{
           "leaseDate": "0314",
+          "propertyType": "Detached House",
+          "areaSqm": "100-110",
+          "areaSqft": "1100-1200",
+          "rent": 5000,
+          "district": "12",
+          "noOfBedRoom": "3"
+        },
+        {
+          "leaseDate": "0314",
+          "propertyType": "Detached House",
+          "areaSqm": "50-60",
+          "areaSqft": "1100-1200",
+          "rent": 3700,
+          "district": "12",
+          "noOfBedRoom": "2"
+        }
+      ],
+      "y": "48113.076",
+      "x": "26479.573"
+      
+    
+    },
+    {
+      "project": "NOWHERELAND",
+      "street": "CANBERRA ROAD",
+      "rental": [{
+          "leaseDate": "0314",
           "propertyType": "Non-landed Properties",
           "areaSqm": "100-110",
           "areaSqft": "1100-1200",
@@ -176,10 +203,64 @@
           "leaseDate": "0314",
           "propertyType": "Non-landed Properties",
           "areaSqm": "50-60",
-          "areaSqft": "500-600",
+          "areaSqft": "1100-1200",
           "rent": 3700,
           "district": "12",
           "noOfBedRoom": "2"
+        }
+      ],
+      "y": "48113.076",
+      "x": "26479.573"
+      
+    
+    },
+    {
+      "project": "SomewhereLAND",
+      "street": "CANBERRA ROAD",
+      "rental": [{
+          "leaseDate": "0314",
+          "propertyType": "Terrace House",
+          "areaSqm": "100-110",
+          "areaSqft": "9000-10000",
+          "rent": 15000,
+          "district": "12",
+          "noOfBedRoom": "7"
+        },
+        {
+          "leaseDate": "0314",
+          "propertyType": "Terrace House",
+          "areaSqm": "50-60",
+          "areaSqft": "11000-12000",
+          "rent": 17700,
+          "district": "12",
+          "noOfBedRoom": "8"
+        }
+      ],
+      "y": "48113.076",
+      "x": "26479.573"
+      
+    
+    },
+    {
+      "project": "SomewhereLAND",
+      "street": "CANBERRA ROAD",
+      "rental": [{
+          "leaseDate": "0314",
+          "propertyType": "Executive Condominium",
+          "areaSqm": "100-110",
+          "areaSqft": "9000-10000",
+          "rent": 15000,
+          "district": "12",
+          "noOfBedRoom": "7"
+        },
+        {
+          "leaseDate": "0314",
+          "propertyType": "Executive Condominium",
+          "areaSqm": "50-60",
+          "areaSqft": "11000-12000",
+          "rent": 17700,
+          "district": "12",
+          "noOfBedRoom": "8"
         }
       ],
       "y": "48113.076",
