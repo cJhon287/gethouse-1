@@ -6,7 +6,7 @@ const DataController = ({handleFindHouse, setSelectedLocation, setSelectedPriceR
 
  
   return (
-    <div className="flex items-center justify-between p-4 z-[90] w-full relative border mx-auto h-full">
+    <div className="flex items-center justify-between p-4 z-[94] w-full relative border mx-auto h-full">
       <ul className="flex h-[50px] mx-auto ">
         <li className="p-2">
           <HouseSearchController

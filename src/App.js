@@ -8,6 +8,7 @@ import Signup from './pages/Signup';
 import { GoogleMap, useLoadScript,useJsApiLoader, Marker } from "@react-google-maps/api";
 
 import DisplayInfoUI from './pages/DisplayInfoUI';
+import Account from './pages/Account';
 
 
 
@@ -23,6 +24,7 @@ function App() {
           <Route path='/display' element = {<DisplayInfoUI/>} />
           <Route path='/login' element = {<Login />} />
           <Route path='/signup' element = {<Signup />} />
+          <Route path='/account' element = {<Account />} />
         </Routes> 
         
 

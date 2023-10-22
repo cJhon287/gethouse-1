@@ -72,7 +72,7 @@ const BaseUIClass = ({ toggleView,toggleNavbar,view,navbar }) => {
         </ul>
       </div>
     </div>
-    ):(
+    ):navbar==='NavbarDisplay'?(
 
     
     <div className="bg-gray-600 rounded-[20px] flex justify-between items-center h-24 xl:max-w-[1240px] md:w-full px-4 text-white relative z-[100] top-4 xl:mx-auto md:mx-4">
@@ -143,7 +143,44 @@ const BaseUIClass = ({ toggleView,toggleNavbar,view,navbar }) => {
       </ul>
     </div>
     </div>
-    )}
+    ):(
+      <div className="bg-gray-600 rounded-[20px] flex justify-between items-center h-24 xl:max-w-[1240px] md:w-full px-4 text-white relative z-[100] top-4 xl:mx-auto md:mx-4">
+    <ul className="hidden md:flex">
+      <button>
+        <span style={{ display: 'flex', alignItems: 'center' }}>
+          Sign Out
+        </span>
+      </button>
+      <li className="p-4"></li>
+    </ul>
+    <Link to="/">
+      <h1 onClick ={()=>{
+        toggleNavbar('NavbarHome')
+      }}
+        className="  w-full text-3xl font-bold text-[#0061df] flex items-center justify-center ">
+        Welcome X
+      </h1>
+    </Link>
+    <ul className="hidden md:flex">
+    
+      
+      <Link to='/display'>
+      <button
+        onClick={() => {
+          toggleView('list'); // Call toggleView with 'list' to switch to List component
+          toggleNavbar('NavbarDisplay');
+          
+
+        }}
+        className="p-4 border rounded-lg"
+      >
+        Search
+      </button>
+      </Link>
+    </ul>
+    </div>
+    )
+    }
   </>
   );
 };

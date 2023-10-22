@@ -11,8 +11,16 @@ const center = {
   lng: 103.948827,
 };
 
-function MapView2({ markers }) {
+const singaporeBounds = {
+  // Define the LatLngBounds that encapsulate the entire Singapore area.
+  north: 1.470771, // Adjust these coordinates as needed
+  south: 1.202882,
+  east: 104.053650,
+  west: 103.607494,
+};
 
+function MapView2({ markers }) {
+    
     
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
@@ -22,8 +30,6 @@ function MapView2({ markers }) {
   const [map, setMap] = useState(null);
 
   const onLoad = React.useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
     setMap(map);
   }, []);
 
@@ -31,11 +37,19 @@ function MapView2({ markers }) {
     setMap(null);
   }, []);
 
+  useEffect(() => {
+    if (isLoaded && map) {
+      // Set the initial zoom level to fit the entire Singapore area.
+      const bounds = new window.google.maps.LatLngBounds(singaporeBounds);
+      map.fitBounds(bounds);
+    }
+  }, [isLoaded, map]);
+
   return isLoaded ? (
     <>
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
+        center={singaporeBounds}
         zoom={8}
         onLoad={onLoad}
         onUnmount={onUnmount}

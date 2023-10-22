@@ -48,8 +48,8 @@ const DisplayInfoUI = ({viewValue}) => {
       
       useEffect(() => {
         // Check if we should navigate to /display
-        if (navbar === 'NavbarDisplay') {
-          navigate('/display');
+        if (navbar === 'NavbarHome') {
+          navigate('/');
         }
       }, [navbar, navigate]);
       
@@ -58,7 +58,7 @@ const DisplayInfoUI = ({viewValue}) => {
      return (
        <>
            
-           <BaseUIClass toggleViesw={toggleView} view={view} toggleNavbar={toggleNavbar} navbar={navbar} />
+           <BaseUIClass toggleView={toggleView} view={view} toggleNavbar={toggleNavbar} navbar={navbar} />
    
            <Main/>
            <Icon/>

@@ -2,65 +2,74 @@ import React, { useEffect, useState } from 'react';
 import { getDistance } from 'geolib';
 import svy21Wrapper from './svy21Wrapper';
 
-function HousingDataUpdate({ updateListMap, onDataFiltered1,onDataFiltered2 }) {
+function HousingDataUpdate({ updateListMap, onDataFiltered1, onDataFiltered2 }) {
   const [matchingItems, setMatchingItems] = useState([]);
   const [markers, setMarkers] = useState([]);
-console.log(updateListMap)
+
   useEffect(() => {
-    
-      fetch('/rental.json') // Adjust the path as needed
-        .then((response) => response.json())
-        .then((data) => {
-          const matchingItemsArray = [];
-          const markersArray = [];
-          
+    fetch('/rental.json') // Adjust the path as needed
+      .then((response) => response.json())
+      .then((data) => {
+        const matchingItemsArray = [];
+        const markersArray = [];
 
-          data.Result.forEach((item) => {
-            let shouldAddMarker = false;
-            if(
-            (updateListMap.location!="" 
-            || updateListMap.priceRange!="" 
-            || updateListMap.noOfRooms!="" 
-            || updateListMap.sizeOfHouse!=""
-            || updateListMap.typeOfHouse!="") 
-            &&
-            (isWithin1000m(updateListMap.latlng, item)
-            &&isPriceInRange(updateListMap.priceRange, item)
-            &&hasMatchingNoOfRooms(updateListMap.noOfRooms, item)
-            &&isSizeInRange(updateListMap.sizeOfHouse,item)
-            &&isSameHouseType(updateListMap.typeOfHouse, item))
-            ){
-              shouldAddMarker=true;
-              
-            }
-  
-            if (shouldAddMarker) {
-              // Push the marker coordinates into the array
-              const wgs84Coords = svy21Wrapper.computeLatLon(
-                parseFloat(item.y),
-                parseFloat(item.x)
-              );
-              markersArray.push({
-                lat: wgs84Coords.lat,
-                lng: wgs84Coords.lon,
-              });
+        data.Result.forEach((item) => {
+          let shouldAddMarker = false;
+          const matchingRental = []; // Store matching rental items
 
-              matchingItemsArray.push(item);
-            }
-          });
-  
-          // Set the markers on the map
-          setMarkers(markersArray);
+          if (
+            (updateListMap.location !== "" ||
+              updateListMap.priceRange !== "" ||
+              updateListMap.noOfRooms !== "" ||
+              updateListMap.sizeOfHouse !== "" ||
+              updateListMap.typeOfHouse !== "") &&
+            (isWithin1000m(updateListMap.latlng, item) &&
+              isPriceInRange(updateListMap.priceRange, item) &&
+              hasMatchingNoOfRooms(updateListMap.noOfRooms, item) &&
+              isSizeInRange(updateListMap.sizeOfHouse, item) &&
+              isSameHouseType(updateListMap.typeOfHouse, item))
+          ) {
+            shouldAddMarker = true;
+          }
 
-          setMatchingItems(matchingItemsArray);
+          if (shouldAddMarker) {
+            // Push the marker coordinates into the array
+            const wgs84Coords = svy21Wrapper.computeLatLon(
+              parseFloat(item.y),
+              parseFloat(item.x)
+            );
+            markersArray.push({
+              lat: wgs84Coords.lat,
+              lng: wgs84Coords.lon,
+            });
 
-          onDataFiltered1(markers); // Pass matching items to the parent component
-          onDataFiltered2(matchingItems);
-        })
-        .catch((error) => {
-          console.error('Error fetching rental data:', error);
+            // Store the matching rental items
+            matchingRental.push(
+              ...item.rental.filter((rentalItem) => {
+                return (
+                  isPriceInRange(updateListMap.priceRange, { rental: [rentalItem] }) &&
+                  hasMatchingNoOfRooms(updateListMap.noOfRooms, { rental: [rentalItem] }) &&
+                  isSizeInRange(updateListMap.sizeOfHouse, { rental: [rentalItem] }) &&
+                  isSameHouseType(updateListMap.typeOfHouse, { rental: [rentalItem] })
+                );
+              })
+            );
+
+            matchingItemsArray.push({ ...item, rental: matchingRental });
+          }
         });
-    
+
+        // Set the markers on the map
+        setMarkers(markersArray);
+
+        setMatchingItems(matchingItemsArray);
+
+        onDataFiltered1(markersArray);
+        onDataFiltered2(matchingItemsArray);
+      })
+      .catch((error) => {
+        console.error('Error fetching rental data:', error);
+      });
   }, [updateListMap, onDataFiltered1, onDataFiltered2]);
 
     // Helper function to check if coordinates are within 1000m
