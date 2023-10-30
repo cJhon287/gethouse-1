@@ -9,7 +9,7 @@ const HouseSearchController = ({ onSelect, txtfile, placeHolder }) => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    // Fetch the text file containing road names
+    // Fetch the text file 
     fetch(txtfile)
       .then((response) => {
         if (!response.ok) {
@@ -18,7 +18,7 @@ const HouseSearchController = ({ onSelect, txtfile, placeHolder }) => {
         return response.text();
       })
       .then((data) => {
-        // Split the text into an array of road names (one per line)
+        // Split the text 
         const namesArray = data.split("\n");
         // Add "Deselect" as the first option in the list
         namesArray.unshift("Deselect");

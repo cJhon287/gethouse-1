@@ -1,215 +1,124 @@
-
-
-import React, { useEffect, useState } from 'react'
-import { GoogleMap, useJsApiLoader,useLoadScript, Marker } from '@react-google-maps/api';
-import { getDistance } from 'geolib';
-import svy21Wrapper from './svy21Wrapper';
+import React, { useEffect, useState } from 'react';
+import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
+import { FaMapMarkerAlt,FaMapMarker } from "react-icons/fa";
+import CustomMarker from '../assets/images/icons8-markerpurple.png'
+import MarkerInfo from './MarkerInfo';
 
 const containerStyle = {
   width: '900px',
-  height: '600px'
+  height: '600px',
 };
 
 const center = {
-  lat:  1.371106,
-  lng: 103.948827
+  lat: 1.371106,
+  lng: 103.948827,
 };
 
-function MapView({updateListMap}) {
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyCx3ImOYKc2pq4_FCQpG0FupDkroHmNK30"
-  })
+const singaporeBounds = {
+  // Define the LatLngBounds that encapsulate the entire Singapore area.
+  north: 1.470771, // Adjust these coordinates as needed
+  south: 1.202882,
+  east: 104.053650,
+  west: 103.607494,
+};
 
+function MapView({ markers, matchingItems }) {
+    
   const [map, setMap] = useState(null);
-  const [markers, setMarkers] = useState([]);
-  const [matchingItems, setMatchingItems] = useState([]);
+  const [selectedMarker, setSelectedMarker] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState("");
+  const [infoWindowOpen, setInfoWindowOpen] = useState(false);
 
-  useEffect(() => {
-    console.log("hiiiiiiiiii")
-    console.log(updateListMap)
-    console.log("byeeeeeeeeeee")
-    
-    if (isLoaded) {
-      // Fetch your rental data from the JSON file
-      fetch('/rental.json') // Adjust the path as needed
-        .then((response) => response.json())
-        .then((data) => {
-          // Create an array to store markers
-          const markersArray = [];
-          const matchingItemsArray = []
-  
-          // Loop through the data and filter based on the criteria
-          data.Result.forEach((item) => {
-
-           
-
-            let shouldAddMarker = false;
-            if(
-            (updateListMap.location!=="" 
-            || updateListMap.priceRange!=="" 
-            || updateListMap.noOfRooms!=="" 
-            || updateListMap.sizeOfHouse!==""
-            || updateListMap.typeOfHouse!=="") 
-            &&
-            (isWithin1000m(updateListMap.latlng, item)
-            &&isPriceInRange(updateListMap.priceRange, item)
-            &&hasMatchingNoOfRooms(updateListMap.noOfRooms, item)
-            &&isSizeInRange(updateListMap.sizeOfHouse,item)
-            &&isSameHouseType(updateListMap.typeOfHouse, item))
-            ){
-              shouldAddMarker=true;
-              
-            }
-  
-            if (shouldAddMarker) {
-              // Push the marker coordinates into the array
-              const wgs84Coords = svy21Wrapper.computeLatLon(
-                parseFloat(item.y),
-                parseFloat(item.x)
-              );
-              markersArray.push({
-                lat: wgs84Coords.lat,
-                lng: wgs84Coords.lon,
-              });
-
-              matchingItemsArray.push(item);
-            }
-          });
-  
-          // Set the markers on the map
-          setMarkers(markersArray);
-
-          setMatchingItems(matchingItemsArray);
-
-          
-          
-        })
-        .catch((error) => {
-          console.error('Error fetching rental data:', error);
-        });
-    }
-  }, [isLoaded, updateListMap]);
-  
-  // Helper function to check if coordinates are within 1000m
-  function isWithin1000m(location, item) {
-    if(location!==null){
-      const wgs84Coords = svy21Wrapper.computeLatLon(
-        parseFloat(item.y),
-        parseFloat(item.x)
-      );
-      const distance = getDistance(
-        {
-          latitude: location.lat,
-          longitude: location.lng,
-        },
-        {
-          latitude: wgs84Coords.lat,
-          longitude: wgs84Coords.lon,
-        }
-      );
-
-      return distance <= 1000;
-    }
-    else{
-      return true;
-    }
-    
-  }
-  
-  // Helper function to check if price is within the selected range
-  function isPriceInRange(selectedPriceRange, item) {
-    if(selectedPriceRange!==""){
-      const [minRent, maxRent] = selectedPriceRange.split('-');
-      
-      return item.rental.some((rental) => (rental.rent >= parseInt(minRent) && rental.rent <= parseInt(maxRent)));
-      
-
-    }
-    else{
-      return true;
-    }
-  }
-  
-  // Helper function to check if the number of rooms matches
-  function hasMatchingNoOfRooms(selectedNoOfRooms, item) {
-    if(selectedNoOfRooms!==""){
-      return item.rental.some((rental) => parseInt(rental.noOfBedRoom) === parseInt(selectedNoOfRooms));
-    }
-    else{
-      return true;
-    }
-  }
-    // Helper function to check if the size matches
-  function isSizeInRange(selectedSize, item) {
-    if(selectedSize!==""){
-      const [minSize, maxSize] = selectedSize.split('-');
-
-      return item.rental.some((rental)=>{
-        const [minSqft,maxSqft]=rental.areaSqft.split('-');
-        const selectedMin = parseInt(minSize);
-        const selectedMax = parseInt(maxSize);
-        const itemMin = parseInt(minSqft);
-        const itemMax = parseInt(maxSqft); 
-        //1001-2000 -> 1050 ->     return 1000<=1050<=1100
-        return ((selectedMin+selectedMax)/2)<= itemMax && ((selectedMin+selectedMax)/2) >= itemMin
-
-      });
-      
-
-    }
-    else{
-      return true;
-    }
-  }
-
-  function isSameHouseType(selectedHouseType, item) {
-    if(selectedHouseType!==""){
-      return item.rental.some((rental) => rental.propertyType.trim() === selectedHouseType.trim());
-    }
-    else{
-      return true;
-    }
-  }
-
+    const { isLoaded } = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: "AIzaSyCx3ImOYKc2pq4_FCQpG0FupDkroHmNK30"
+      })
 
   const onLoad = React.useCallback(function callback(map) {
-    
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
-
-    setMap(map)
-  }, [])
+    setMap(map);
+  }, []);
 
   const onUnmount = React.useCallback(function callback(map) {
-    setMap(null)
-  }, [])
+    setMap(null);
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded && map) {
+      // Set the initial zoom level to fit the entire Singapore area.
+      const bounds = new window.google.maps.LatLngBounds(singaporeBounds);
+      map.fitBounds(bounds);
+    }
+  }, [isLoaded, map]);
+
+  const handleMarkerMouseEnter = (marker,index) => {
+
+    // Set the selected marker when mouse enters
+    console.log("hihi")
+    console.log(matchingItems[selectedIndex])
+    console.log("hihi")
+    setSelectedMarker(marker);
+    setSelectedIndex(index);
+    setInfoWindowOpen(true);
+
+
+  };
+
+  const handleMarkerMouseLeave = () => {
+    // Clear the selected marker when mouse leaves
+    setSelectedMarker(null);
+    setSelectedIndex("");
+    setInfoWindowOpen(false);
+  };
 
   return isLoaded ? (
-     <>
+    <>
       <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
-        zoom={8}
+        center={singaporeBounds}
+        zoom={12}
         onLoad={onLoad}
         onUnmount={onUnmount}
         options={{
-          streetViewControl: false,
           mapTypeControl: false,
+          streetViewControl: false,
           fullscreenControl: false,
         }}
       >
-        { 
-          markers.map((marker, index) => (
-            <Marker key={index} position={marker} />
-          ))
-        }
-        <></>
+        {markers.map((marker, index) => (
+          
+          <Marker
+            key={index}
+            
+            position={marker}
+            options ={{
+              icon: CustomMarker,
+            }}
+            onClick={() => handleMarkerMouseEnter(marker,index)}
+            ></Marker>
+          ))}
+  
+          {selectedMarker&& infoWindowOpen&& matchingItems[selectedIndex]&&(
+            <InfoWindow
+              position={selectedMarker}
+              onCloseClick={() => {
+                setSelectedMarker(null);
+                setSelectedIndex("");
+                setInfoWindowOpen(false);
+                handleMarkerMouseLeave()
+              }} // Handle closing the InfoWindow
+            >
+              <h1>{matchingItems[selectedIndex].street}</h1>
+              
+            </InfoWindow>
+          )}
+        
       </GoogleMap>
 
       
-      </>
-  ) : <></>
+    </>
+
+    
+  ) : <></>;
 }
 
-export default MapView
+export default MapView;

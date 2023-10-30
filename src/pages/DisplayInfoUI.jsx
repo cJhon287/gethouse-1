@@ -7,22 +7,15 @@ import DataController from '../components/DataController';
 import BaseUIClass from '../components/BaseUICLass';
 import { useNavigate } from 'react-router-dom';
 import SearchCriteria from '../components/SearchCriteria';
-import MapView2 from '../components/MapView2';
 import HousingDataUpdate from '../components/HousingDataUpdate';
+import SearchCriteria2 from '../components/SearchCriteria2';
 
-const DisplayInfoUI = ({viewValue}) => {
+const DisplayInfoUI = ({viewValue,toggleView}) => {
 
-    const  [view, setView] = useState(viewValue);
+    
     const  [navbar,setNavbar] = useState('NavbarDisplay');
     const [updateListMap,setUpdateListMap] = useState({});
     const navigate = useNavigate();
-
-    const toggleView = (selectedView)=>{
-        setView(selectedView);
-       }
-       const toggleNavbar= (homeON)=>{
-           setNavbar(homeON);
-       }
 
     const [marker, setMarkers] = useState([])
     const [matchingItem, setMatchingItem] = useState([])
@@ -39,18 +32,35 @@ const DisplayInfoUI = ({viewValue}) => {
     
 
     useEffect(() => {
-        // Check if we are on the /display route
-        if (window.location.pathname === '/display') {
-          // Set the navbar to 'NavbarDisplay' if on the /display route
-          setNavbar('NavbarDisplay');
+      // Check if we are on the /display route
+      if (window.location.pathname === '/login') {
+            // Set the navbar to 'NavbarDisplay' if on the /display route
+            setNavbar('NavbarLogIn');
+      }else if(window.location.pathname === '/'){
+            setNavbar('NavbarHome');
+      }else if(window.location.pathname === '/display'){
+        setNavbar('NavbarDisplay');
+        }else if(window.location.pathname === '/account'){
+        setNavbar('NavbarAccount');
+        }else if(window.location.pathname === '/signup'){
+            setNavbar('NavbarSignUp');
         }
       }, []);
       
       useEffect(() => {
-        // Check if we should navigate to /display
-        if (navbar === 'NavbarHome') {
-          navigate('/');
+      // Check if we should navigate to /display
+      if (navbar === 'NavbarHome') {
+            navigate('/');
+      }else if(navbar === 'NavbarDislay'){
+            navigate('/display');
+      }else if(navbar === 'NavbarAccount'){
+            navigate('/account');
+      }else if(navbar === 'NavbarLogIn'){
+        navigate('/login');
         }
+        else if(navbar === 'NavbarSignUp'){
+            navigate('/signup');
+            }
       }, [navbar, navigate]);
       
 
@@ -58,8 +68,7 @@ const DisplayInfoUI = ({viewValue}) => {
      return (
        <>
            
-           <BaseUIClass toggleView={toggleView} view={view} toggleNavbar={toggleNavbar} navbar={navbar} />
-   
+  
            <Main/>
            <Icon/>
 
@@ -68,8 +77,8 @@ const DisplayInfoUI = ({viewValue}) => {
            
            <div className="absolute w-full h-full bg-gray-600">
              <div className="flex flex-col mx-auto relatives items-center p-4">
-               {view === 'map' ? (
-                 <MapView2  markers = {marker}/> 
+               {viewValue === 'map' ? (
+                 <MapView  markers = {marker} matchingItems={matchingItem}/> 
                  
                ) : (
                  <ListView matchingItems={matchingItem}/> // Render the List component conditionally based on the view state
