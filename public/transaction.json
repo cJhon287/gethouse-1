@@ -1,0 +1,168 @@
+{
+    "Result": [{
+      "project": "TURQUOISE",
+      "marketSegment": "CCR",
+      "transaction": [{
+          "contractDate": "0715",
+          "area": "203",
+          "price": "2900000",
+          "propertyType": "Condominium",
+          "typeOfArea": "Strata",
+          "tenure": "99 yrs lease commencing from 2007",
+          "floorRange": "01-05",
+          "typeOfSale": "3",
+          "district": "04",
+          "noOfUnits": "1"
+        },
+        {
+          "contractDate": "0116",
+          "area": "200",
+          "price": "3014200",
+          "propertyType": "Condominium",
+          "typeOfArea": "Strata",
+          "tenure": "99 yrs lease commencing from 2007",
+          "floorRange": "01-05",
+          "typeOfSale": "3",
+          "district": "04",
+          "noOfUnits": "1"
+        }
+      ],
+      "street": "COVE DRIVE",
+      "y": "24997.821719180001",
+      "x": "28392.530515570001"
+    },
+    {
+        "project": "RED",
+        "marketSegment": "OCR",
+        "transaction": [{
+            "contractDate": "0715",
+            "area": "220",
+            "price": "3900000",
+            "propertyType": "Apartment",
+            "typeOfArea": "Strata",
+            "tenure": "99 yrs lease commencing from 2008",
+            "floorRange": "01-05",
+            "typeOfSale": "3",
+            "district": "04",
+            "noOfUnits": "1"
+          },
+          {
+            "contractDate": "0116",
+            "area": "210",
+            "price": "4014200",
+            "propertyType": "Apartment",
+            "typeOfArea": "Strata",
+            "tenure": "99 yrs lease commencing from 2008",
+            "floorRange": "01-05",
+            "typeOfSale": "3",
+            "district": "04",
+            "noOfUnits": "1"
+          }
+        ],
+        "street": "PASIR RIS 8",
+        "y": "39332.949",
+        "x": "40703.445"
+      },
+      {
+        "project": "BLUE",
+        "marketSegment": "OCR",
+        "transaction": [{
+            "contractDate": "0715",
+            "area": "203",
+            "price": "2900000",
+            "propertyType": "Apartment",
+            "typeOfArea": "Strata",
+            "tenure": "99 yrs lease commencing from 2009",
+            "floorRange": "01-05",
+            "typeOfSale": "3",
+            "district": "04",
+            "noOfUnits": "1"
+          },
+          {
+            "contractDate": "0116",
+            "area": "200",
+            "price": "3014200",
+            "propertyType": "Apartment",
+            "typeOfArea": "Strata",
+            "tenure": "99 yrs lease commencing from 2009",
+            "floorRange": "01-05",
+            "typeOfSale": "3",
+            "district": "04",
+            "noOfUnits": "1"
+          }
+        ],
+        "street": "ZION ROAD",
+        "y": "30406.047",
+        "x": "27920.473"
+      },
+      {
+        "project": "GREEN",
+        "marketSegment": "RCR",
+        "transaction": [{
+            "contractDate": "0715",
+            "area": "250",
+            "price": "250000",
+            "propertyType": "Condominium",
+            "typeOfArea": "Strata",
+            "tenure": "99 yrs lease commencing from 2017",
+            "floorRange": "01-05",
+            "typeOfSale": "3",
+            "district": "04",
+            "noOfUnits": "1"
+          },
+          {
+            "contractDate": "0116",
+            "area": "230",
+            "price": "359200",
+            "propertyType": "Condominium",
+            "typeOfArea": "Strata",
+            "tenure": "99 yrs lease commencing from 2017",
+            "floorRange": "01-05",
+            "typeOfSale": "3",
+            "district": "04",
+            "noOfUnits": "1"
+          }
+        ],
+        "street": "PAYA LEBAR ROAD",
+        "y": "34057.192",
+        "x": "34378.075"
+      },
+      {
+        "project": "YELLOW",
+        "marketSegment": "OCR",
+        "transaction": [{
+            "contractDate": "0715",
+            "area": "315",
+            "price": "4900000",
+            "propertyType": "Strata Semidetached",
+            "typeOfArea": "Strata",
+            "tenure": "99 yrs lease commencing from 2013",
+            "floorRange": "01-05",
+            "typeOfSale": "3",
+            "district": "04",
+            "noOfUnits": "1"
+          },
+          {
+            "contractDate": "0116",
+            "area": "315",
+            "price": "5014200",
+            "propertyType": "Strata Semidetached",
+            "typeOfArea": "Strata",
+            "tenure": "99 yrs lease commencing from 2013",
+            "floorRange": "01-05",
+            "typeOfSale": "3",
+            "district": "04",
+            "noOfUnits": "1"
+          }
+        ],
+
+        "street": "CHANGI COAST ROAD",
+        "y": "39946.126",
+        "x": "46907.938"
+      }
+
+
+
+],
+    "Status": "Success"
+  }
